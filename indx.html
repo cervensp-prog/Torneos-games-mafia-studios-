@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscripciones - Games Mafia Studios</title>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ESTILOS GLOBALES --- */
+        :root {
+            --color-oro: #ffcc00;
+            --color-oro-oscuro: #b38f00;
+            --color-fondo: #050505;
+            --color-tarjeta: #121212;
+            --color-whatsapp: #25d366;
+            --color-bs: #00ff00;
+        }
+
+        body {
+            background-color: var(--color-fondo);
+            background-image: radial-gradient(circle, #1a1a1a 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* --- ENCABEZADO --- */
+        header {
+            width: 100%;
+            padding: 40px 0;
+            text-align: center;
+            background: linear-gradient(to bottom, #000, transparent);
+        }
+
+        .logo-text {
+            font-family: 'Black Ops One', cursive;
+            font-size: 3rem;
+            color: var(--color-oro);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 0;
+            text-shadow: 0 0 15px rgba(255, 204, 0, 0.6);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #aaa;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        .main-container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        /* --- TARJETAS DE TORNEO --- */
+        .tournament-card {
+            background: var(--color-tarjeta);
+            border: 2px solid #333;
+            border-radius: 20px;
+            width: 380px;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        .tournament-card:hover {
+            border-color: var(--color-oro);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 204, 0, 0.2);
+        }
+
+        .card-header {
+            padding: 25px;
+            background: linear-gradient(45deg, #1a1a1a, #222);
+            border-bottom: 2px solid var(--color-oro);
+            text-align: center;
+        }
+
+        .card-header h2 {
+            margin: 0;
+            font-family: 'Black Ops One', cursive;
+            color: var(--color-oro);
+            font-size: 1.8rem;
+        }
+
+        .card-body {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .game-days {
+            background: #222;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 1px solid #444;
+        }
+
+        /* --- SECCIÓN DE PAGO --- */
+        .payment-section {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            background: #0a0a0a;
+            border-radius: 15px;
+            border: 1px dashed var(--color-oro);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .bank-data {
+            text-align: left;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #ddd;
+            margin-bottom: 15px;
+        }
+
+        .price-tag {
+            display: block;
+            font-size: 1.8rem;
+            color: var(--color-bs);
+            font-weight: bold;
+            margin: 15px 0;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+
+        /* --- INPUT DE CARGA DE IMAGEN --- */
+        .file-upload-wrapper {
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        .file-upload-wrapper label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--color-oro);
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            background: #222;
+            color: white;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #444;
+            cursor: pointer;
+        }
+
+        /* --- BOTONES --- */
+        .btn-main {
+            background: var(--color-oro);
+            color: black;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .btn-main:hover {
+            background: white;
+            box-shadow: 0 0 20px var(--color-oro);
+        }
+
+        .btn-whatsapp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--color-whatsapp);
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 12px;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        .btn-whatsapp:hover {
+            background: #1ebc59;
+            transform: scale(1.02);
+        }
+
+        footer {
+            margin: 60px 0 30px;
+            color: #666;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 class="logo-text">GAMES         Mafia</h1>
+        <div class="subtitle">los mejores torneos de venezuela solo aqui         </div>
+    </header>
+
+    <div class="main-container">
+
+        <div class="tournament-card">
+            <div class="card-header">
+                <h2>MODO SOLO x kills</h2>
+            </div>
+            <div class="card-body">
+                <div class="info-row">📍 Mapa: Bermuda /</div>
+                <div class="game-days">
+                    <strong>📅 DÍAS DE JUEGO:</strong><br>
+                    Lunes y Miércoles
+                </div>
+                
+                <button class="btn-main" onclick="togglePayment('pago-solo')">Inscribirse Ahora</button>
+
+                <div id="pago-solo" class="payment-section">
+                    <div class="bank-data">
+                        <strong>🏦 DATOS PAGO MÓVIL:</strong><br>
+                        Banco: [0105 mercantil]<br>
+                        Cédula: [33549725]<br>
+                        Teléfono: [0412-3374708]
+                    </div>
+                    <span class="price-tag">Inscripción: 600 Bs</span>
+                    
+                    <div class="file-upload-wrapper">
+                        <label>📸 Selecciona tu comprobante de la galería:</label>
+                        <input type="file" accept="image/*" id="file-solo">
+                    </div>
+
+                    <a href="https://wa.me/584123374780?text=Hola!%20He%20realizado%20el%20pago%20de%20600%20Bs%20para%20el%20Torneo%20SOLO.%20Ya%20tengo%20la%20foto%20lista." class="btn-whatsapp">
+                        <span>📤 Enviar por WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="tournament-card">
+            <div class="card-header">
+                <h2>MODO DÚO x kills </h2>
+            </div>
+            <div class="card-body">
+                <div class="info-row">📍 Mapa: Bermuda /</div>
+                <div class="game-days">
+                    <strong>📅 DÍAS DE JUEGO:</strong><br>
+                    Martes, Jueves, Viernes y Sábado
+                </div>
+                
+                <button class="btn-main" onclick="togglePayment('pago-duo')">Inscribirse Ahora</button>
+
+                <div id="pago-duo" class="payment-section">
+                    <div class="bank-data">
+                        <strong>🏦 DATOS PAGO MÓVIL:</strong><br>
+                        Banco: [0105 mercantil]<br>
+                        Cédula: [33549725]<br>
+                        Teléfono: [0412-3374708]
+                    </div>
+                    <span class="price-tag">Inscripción: 1200 Bs</span>
+                    
+                    <div class="file-upload-wrapper">
+                        <label>📸 Selecciona tu comprobante de la galería:</label>
+                        <input type="file" accept="image/*" id="file-duo">
+                    </div>
+
+                    <a href="https://wa.me/584123374702?text=Hola!%20He%20realizado%20el%20pago%20de%201200%20Bs%20para%20el%20Torneo%20DUO.%20Ya%20tengo%20la%20foto%20lista." class="btn-whatsapp">
+                        <span>📤 Enviar por WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Games Mafia Studios - game mafia 
+    </footer>
+
+    <script>
+        function togglePayment(id) {
+            const sections = document.querySelectorAll('.payment-section');
+            sections.forEach(section => {
+                if(section.id !== id) section.style.display = 'none';
+            });
+
+            const target = document.getElementById(id);
+            target.style.display = (target.style.display === "block") ? "none" : "block";
+        }
+    </script>
+
+</body>
+</html>
