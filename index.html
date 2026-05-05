@@ -269,14 +269,9 @@
         <p>Teléfono: 04123374708</p>
         <p>Banco: 0105 - Banco Mercantil 🏦</p>
     </div>
-
-    <p>📲 <strong>INSCRIPCIONES AQUÍ:</strong><br>
-    <a href="https://wa.me/584123374708">➡️ +58 0412 337 4708</a></p>
     
     <p>📌 Enviar captura del pago + nombre del FREE Directamente copiado del juego ⚠️</p>
     
-    <p><strong>Grupo únete al grupo yaaa 💪🏻</strong><br>
-    <a href="https://chat.whatsapp.com/CMBKKHgXQKjG78iOb0x0Nr">https://chat.whatsapp.com/CMBKKHgXQKjG78iOb0x0Nr</a></p>
 </div>
                         
                         
@@ -334,13 +329,7 @@
         <p>Banco: 0105 - Mercantil 🏦</p>
     </div>
 
-    <p>📲 <strong>INSCRIPCIONES AQUÍ:</strong><br>
-    <a href="https://wa.me/584123374708">➡️ +584123374708</a></p>
-
     <p>📌 Enviar captura del pago + nombre del FREE Directamente copiado del juego</p>
-
-    <p><strong>Grupo de WhatsApp:</strong><br>
-    <a href="https://chat.whatsapp.com/CMBKKHgXQKjG78iOb0x0Nr">https://chat.whatsapp.com/CMBKKHgXQKjG78iOb0x0Nr</a></p>
 </div>
 </strong><br>
                         
@@ -354,7 +343,6 @@
                         <input type="file" accept="image/*" id="file-duo">
                     </div>
 
-                    <a href="https://wa.me/584123374702?text=Hola!%20He%20realizado%20el%20pago%20de%201200%20Bs%20para%20el%20Torneo%20DUO.%20Ya%20tengo%20la%20foto%20lista." class="btn-whatsapp">
                         <span>📤 Enviar por WhatsApp</span>
                     </a>
                 </div>
@@ -615,46 +603,3 @@
 </div>
 
 <script>
-async function buscarJugador() {
-    const id = document.getElementById('playerID').value;
-    const btn = document.getElementById('btnBuscar');
-    const loading = document.getElementById('loading');
-    const resultBox = document.getElementById('resultado-box');
-    const nicknameSpan = document.getElementById('nickname');
-
-    if (!id || id.length < 5) {
-        alert("Por favor, ingresa un ID válido.");
-        return;
-    }
-
-    // Estética de carga
-    btn.disabled = true;
-    btn.style.opacity = "0.5";
-    loading.style.display = "block";
-    resultBox.style.display = "none";
-
-    try {
-        // Usando una API pública de la comunidad (Region Global/EEUU)
-        const response = await fetch(`https://freefire-api.vercel.app/api/v1/info?id=${id}&region=us`);
-        const data = await response.json();
-
-        if (data && data.nickname) {
-            nicknameSpan.innerText = data.nickname;
-            resultBox.style.display = "block";
-        } else {
-            alert("No se encontró el jugador. Verifica el ID.");
-        }
-    } catch (error) {
-        console.error("Error:", error);
-        alert("Error al conectar con el servidor de Garena. Intenta más tarde.");
-    } finally {
-        btn.disabled = false;
-        btn.style.opacity = "1";
-        loading.style.display = "none";
-    }
-}
-            </script>
-    
-    </body>
-</html>
-
