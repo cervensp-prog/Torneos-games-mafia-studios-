@@ -362,7 +362,57 @@
         </div>
 
     </div>
+<div id="countdown-torneo" style="
+    background: #000; 
+    border: 2px solid #ff4500; 
+    border-radius: 8px; 
+    padding: 12px; 
+    width: fit-content; 
+    margin: 15px auto; 
+    text-align: center;
+    box-shadow: 0 0 10px rgba(255, 69, 0, 0.4);
+    font-family: Arial, sans-serif;">
+    
+    <div style="color: #fff; font-size: 12px; font-weight: bold; text-transform: uppercase; margin-bottom: 8px;">
+        EL TORNEO en duo COMIENZA EN:
+    </div>
 
+    <div style="display: flex; justify-content: center; gap: 10px; color: #ff4500; font-weight: 900; font-size: 22px;">
+        <div><span id="h-torneo" style="color: #fff;">00</span><small style="font-size: 9px; display: block; color: #888;">HRS</small></div>
+        <div style="line-height: 24px;">:</div>
+        <div><span id="m-torneo" style="color: #fff;">00</span><small style="font-size: 9px; display: block; color: #888;">MIN</small></div>
+        <div style="line-height: 24px;">:</div>
+        <div><span id="s-torneo" style="color: #fff;">00</span><small style="font-size: 9px; display: block; color: #888;">SEG</small></div>
+    </div>
+</div>
+
+<script>
+    // CONFIGURACIÓN PARA HOY A LAS 9:30 PM
+    const horaInicio = new Date("May 4, 2026 21:30:00").getTime();
+
+    const x = setInterval(function() {
+        const ahora = new Date().getTime();
+        const faltan = horaInicio - ahora;
+
+        // Si ya llegamos a las 9:30 PM
+        if (faltan < 0) {
+            clearInterval(x);
+            document.getElementById("countdown-torneo").innerHTML = "<b style='color:#00ff00; font-size:16px;'>¡EL TORNEO HA INICIADO!</b>";
+            return;
+        }
+
+        // Cálculos
+        const h = Math.floor((faltan % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((faltan % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((faltan % (1000 * 60)) / 1000);
+
+        // Actualizar los números
+        document.getElementById("h-torneo").innerText = h.toString().padStart(2, '0');
+        document.getElementById("m-torneo").innerText = m.toString().padStart(2, '0');
+        document.getElementById("s-torneo").innerText = s.toString().padStart(2, '0');
+    }, 1000);
+</script>
+    
     <footer>
         &copy; 2026 Games Mafia Studios - game mafia 
     </footer>
@@ -382,7 +432,7 @@
   <div id="ranking" style="background: rgba(20, 20, 20, 0.9); border: 2px solid #ff4500; border-radius: 15px; padding: 20px; margin: 20px auto; max-width: 500px; font-family: 'Arial', sans-serif; box-shadow: 0 0 15px #ff4500;">
     
     <h2 style="text-align: center; color: #ff4500; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px;">
-        💀 TOP 10 KILLERS 💀
+        💀 top 1 se gana 110 diamantes gratis 💀
     </h2>
 
     <table style="width: 100%; border-collapse: collapse; color: white; text-align: left;">
