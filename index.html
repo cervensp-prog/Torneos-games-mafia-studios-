@@ -3,526 +3,1291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscripciones - Games Mafia Studios</title>
-    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    
+    <title>Torneos Games Mafia</title>
     <style>
-        /* --- ESTILOS GLOBALES --- */
+        /* Paleta de colores Premium eSports */
         :root {
-            --color-oro: #ffcc00;
-            --color-oro-oscuro: #b38f00;
-            --color-fondo: #050505;
-            --color-tarjeta: #121212;
-            --color-whatsapp: #25d366;
-            --color-bs: #00ff00;
+            --bg-principal: #08080a;
+            --bg-tarjetas: #111116;
+            --color-primario: #ff4655; /* Rojo Neon */
+            --color-freefire: #ffaa00; /* Oro */
+            --color-blockstrike: #00e5ff; /* Cyan */
+            --texto-blanco: #ffffff;
+            --texto-gris: #7e7e86;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: var(--color-fondo);
-            background-image: radial-gradient(circle, #1a1a1a 1px, transparent 1px);
-            background-size: 30px 30px;
-            color: white;
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            background-color: var(--bg-principal);
+            color: var(--texto-blanco);
+            overflow-x: hidden;
         }
 
-        /* --- ENCABEZADO --- */
-        header {
+        /* Línea decorativa superior */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            padding: 40px 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-freefire), var(--color-primario), var(--color-blockstrike));
+            z-index: 999;
+        }
+
+        /* Encabezado Fijo Minimalista */
+        header {
+            background-color: rgba(17, 17, 22, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 30px 20px;
             text-align: center;
-            background: linear-gradient(to bottom, #000, transparent);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .logo-text {
-            font-family: 'Black Ops One', cursive;
-            font-size: 3rem;
-            color: var(--color-oro);
+        header h1 {
+            font-size: 40px;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            margin: 0;
-            text-shadow: 0 0 15px rgba(255, 204, 0, 0.6);
+            letter-spacing: 4px;
+            font-weight: 900;
+            font-style: italic;
         }
 
-        .subtitle {
-            font-size: 1.1rem;
-            color: #aaa;
-            margin-top: 10px;
-            text-transform: uppercase;
-            letter-spacing: 5px;
+        header h1 span {
+            color: var(--color-primario);
+            text-shadow: 0 0 15px rgba(255, 70, 85, 0.4);
         }
 
-        /* --- CONTENEDOR PRINCIPAL --- */
+        /* Contenedor Principal */
         .main-container {
-            width: 90%;
-            max-width: 1100px;
-            margin: 40px auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
 
-        /* --- TARJETAS DE TORNEO --- */
-        .tournament-card {
-            background: var(--color-tarjeta);
-            border: 2px solid #333;
-            border-radius: 20px;
-            width: 380px;
-            overflow: hidden;
-            position: relative;
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-        }
-
-        .tournament-card:hover {
-            border-color: var(--color-oro);
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(255, 204, 0, 0.2);
-        }
-
-        .card-header {
-            padding: 25px;
-            background: linear-gradient(45deg, #1a1a1a, #222);
-            border-bottom: 2px solid var(--color-oro);
+        /* Tarjeta de Presentación / Conclusiones */
+        .presentacion {
             text-align: center;
+            background: linear-gradient(180deg, var(--bg-tarjetas) 0%, #16161f 100%);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .card-header h2 {
-            margin: 0;
-            font-family: 'Black Ops One', cursive;
-            color: var(--color-oro);
-            font-size: 1.8rem;
+        .presentacion h2 {
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            color: #fff;
         }
 
-        .card-body {
+        .presentacion p {
+            font-size: 16px;
+            color: var(--texto-gris);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .presentacion strong {
+            color: #fff;
+        }
+
+        /* Selector de Juegos (Botones) */
+        .menu-apartados {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .btn-apartado {
+            padding: 20px;
+            font-size: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            background-color: var(--bg-tarjetas);
+        }
+
+        /* Botón Free Fire */
+        .btn-ff {
+            color: var(--color-freefire);
+        }
+        .btn-ff:hover, .btn-ff.activo {
+            background-color: var(--color-freefire);
+            color: #000;
+            box-shadow: 0 0 25px rgba(255, 170, 0, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Botón Block Strike */
+        .btn-bs {
+            color: var(--color-blockstrike);
+        }
+        .btn-bs:hover, .btn-bs.activo {
+            background-color: var(--color-blockstrike);
+            color: #000;
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Contenedores de Contenido (Zonas de Códigos) */
+        .contenido-torneo {
+            background-color: var(--bg-tarjetas);
+            border-radius: 12px;
             padding: 30px;
-            text-align: center;
+            display: none; /* Controlado por JS */
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            animation: fadeIn 0.4s ease forwards;
         }
 
-        .info-row {
+        #apartado-free-fire { border: 1px solid rgba(255, 170, 0, 0.2); }
+        #apartado-block-strike { border: 1px solid rgba(0, 229, 255, 0.2); }
+
+        .contenido-torneo h3 {
+            font-size: 22px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
             display: flex;
-            justify-content: center;
             align-items: center;
             gap: 10px;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
         }
 
-        .game-days {
-            background: #222;
-            padding: 10px;
-            border-radius: 10px;
-            margin: 20px 0;
-            border: 1px solid #444;
+        .titulo-ff { color: var(--color-freefire); }
+        .titulo-bs { color: var(--color-blockstrike); }
+
+        /* Marcador de posición limpio para tus códigos */
+        .zona-editable {
+            border: 2px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 50px 20px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.2);
         }
 
-        /* --- SECCIÓN DE PAGO --- */
-        .payment-section {
-            display: none;
-            margin-top: 25px;
-            padding: 20px;
-            background: #0a0a0a;
-            border-radius: 15px;
-            border: 1px dashed var(--color-oro);
-            animation: fadeIn 0.5s ease;
+        .zona-editable p {
+            color: #fff;
+            font-weight: 600;
+            font-size: 15px;
         }
 
+        /* Animación de entrada */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .bank-data {
-            text-align: left;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: #ddd;
-            margin-bottom: 15px;
-        }
-
-        .price-tag {
-            display: block;
-            font-size: 1.8rem;
-            color: var(--color-bs);
-            font-weight: bold;
-            margin: 15px 0;
-            text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
-        }
-
-        /* --- INPUT DE CARGA DE IMAGEN --- */
-        .file-upload-wrapper {
-            margin: 15px 0;
-            text-align: left;
-        }
-
-        .file-upload-wrapper label {
-            display: block;
-            font-size: 0.85rem;
-            color: var(--color-oro);
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-
-        input[type="file"] {
-            width: 100%;
-            background: #222;
-            color: white;
-            padding: 8px;
-            border-radius: 5px;
-            border: 1px solid #444;
-            cursor: pointer;
-        }
-
-        /* --- BOTONES --- */
-        .btn-main {
-            background: var(--color-oro);
-            color: black;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 12px;
-            cursor: pointer;
-            width: 100%;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-
-        .btn-main:hover {
-            background: white;
-            box-shadow: 0 0 20px var(--color-oro);
-        }
-
-        .btn-whatsapp {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: var(--color-whatsapp);
-            color: white;
-            text-decoration: none;
-            padding: 15px;
-            border-radius: 12px;
-            font-weight: bold;
-            margin-top: 15px;
-            transition: 0.3s;
-        }
-
-        .btn-whatsapp:hover {
-            background: #1ebc59;
-            transform: scale(1.02);
-        }
-
+        /* Footer */
         footer {
-            margin: 60px 0 30px;
-            color: #666;
-            font-size: 0.9rem;
             text-align: center;
+            padding: 40px 20px;
+            color: #4e4e54;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 80px;
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1 class="logo-text">GAMES         Mafia</h1>
-        <div class="subtitle">los mejores torneos de venezuela solo aqui         </div>
+        <h1>GAMES <span>MAFIA</span></h1>
     </header>
 
     <div class="main-container">
+        
+        <!-- Breve introducción profesional -->
+        <section class="presentacion">
+            <h2>Plataforma Competitiva Líder</h2>
+            <p>Diseñamos los torneos de eSports más profesionales del circuito móvil. Ofrecemos una experiencia competitiva de élite, garantizando **soporte continuo, máxima transparencia y los mejores servicios** para clanes y jugadores profesionales.</p>
+        </section>
 
-        <div class="tournament-card">
-            <div class="card-header">
-                <h2>MODO SOLO x kills</h2>
-            </div>
-            <div class="card-body">
-                <div class="info-row">📍 Mapa: Bermuda /</div>
-                <div class="game-days">
-                    <strong>📅 DÍAS DE JUEGO:</strong><br>
-                    Lunes y Miércoles
-                </div>
-                
-                <button class="btn-main" onclick="togglePayment('pago-solo')">Inscribirse Ahora</button>
-
-                <div id="pago-solo" class="payment-section">
-                    <div class="bank-data">
-                        <strong><div class="torneo-info">
-    <h2>🔥 TORNEO HOY 10:00 PM</h2>
-    <p>🏆 Battle Royale en <strong>*solo x KILL 💀*</strong></p>
-    <p>🇻🇪 ¡Demuestra quién manda!</p>
-    <p><em>Leer todo correctamente</em></p>
-    <p>📱 Solo jugadores MÓVIL❗</p>
-    
-    <p><strong>💵 Inscripción:</strong> 600 BS</p>
-    
-    <p><strong>💰 PREMIOS:</strong><br>
-    CADA KILL SE PAGA 💰 500Bs <em>(Ganes o Pierdas)</em><br>
-    Por cada kill te ganas 1 $</p>
-
-    <div class="pago-movil">
-        <h3>💳 PAGO MÓVIL:</h3>
-        <p>Cédula: V33549725</p>
-        <p>Teléfono: 04123374708</p>
-        <p>Banco: 0105 - Banco Mercantil 🏦</p>
-    </div>
-    
-    <p>📌 Enviar captura del pago + nombre del FREE Directamente copiado del juego ⚠️</p>
-    
-</div>
-                        
-                        
-                     
-                    </div>
-                    <span class="price-tag">Inscripción: 600 Bs</span>
-                    
-                    <div class="file-upload-wrapper">
-                        <label>📸 Selecciona tu comprobante de la galería:</label>
-                        <input type="file" accept="image/*" id="file-solo">
-                    </div>
-
-                    <a href="https://wa.me/584123374780?text=Hola!%20He%20realizado%20el%20pago%20de%20600%20Bs%20para%20el%20Torneo%20SOLO.%20Ya%20tengo%20la%20foto%20lista." class="btn-whatsapp">
-                        <span>📤 Enviar por WhatsApp</span>
-                    </a>
-                </div>
-            </div>
+        <!-- Botones de Selección -->
+        <div class="menu-apartados">
+            <button id="btn-ff" class="btn-apartado btn-ff" onclick="mostrarApartado('free-fire')">Free Fire</button>
+            <button id="btn-bs" class="btn-apartado btn-bs" onclick="mostrarApartado('block-strike')">Block Strike</button>
         </div>
 
-        <div class="tournament-card">
-            <div class="card-header">
-                <h2>MODO DÚO x kills </h2>
-            </div>
-            <div class="card-body">
-                <div class="info-row">📍 Mapa: Bermuda /</div>
-                <div class="game-days">
-                    <strong>📅 DÍAS DE JUEGO:</strong><br>
-                    Martes, Jueves, Viernes y Sábado
-                </div>
-                
-                <button class="btn-main" onclick="togglePayment('pago-duo')">Inscribirse Ahora</button>
+        <!-- ========================================== -->
+        <!-- APARTADO 1: FREE FIRE                      -->
+        <!-- ========================================== -->
+        <div id="apartado-free-fire" class="contenido-torneo">
+            <h3 class="titulo-ff"><span>🏆</span> Torneos Free Fire</h3>
+            
+            <!-- PEGA TU CÓDIGO DE FREE FIRE AQUÍ ABAJO -->
+            <div class="zona-editable">
+                <p><!-- ========================================== -->
+<!-- CÓDIGO INTERNO PARA LA SECCIÓN DE FREE FIRE -->
+<!-- ========================================== -->
+<style>
+    /* Estilos internos para el módulo de Free Fire */
+    .ff-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
 
-                <div id="pago-duo" class="payment-section">
-                    <div class="bank-data">
-                        <strong>🏦 <div class="torneo-info">
-    <h2>🔥 TORNEO HOY 10:00 PM</h2>
-    <p>🏆 Battle Royale en <strong>*Duo x KILL 💀*</strong></p>
-    <p>🇻🇪 ¡Demuestra quién manda!</p>
-    <p><strong>*LEER TODO CORRECTAMENTE*</strong></p>
-    <p>🗺️ Bermuda | 🔄 sin resurrección</p>
-    <p>📱 Solo jugadores MÓVIL❗</p>
+    .btn-subtab {
+        background-color: #1a1a24;
+        border: 1px solid #333;
+        color: #fff;
+        padding: 10px 25px;
+        font-weight: 700;
+        text-transform: uppercase;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
 
-    <p><strong>💵 Inscripción:</strong><br>
-    👥 DUO: 1200 BS<br>
-    👤 SOLO: 600 BS</p>
+    .btn-subtab.active {
+        background-color: #ffaa00;
+        color: #000;
+        border-color: #ffaa00;
+        box-shadow: 0 0 15px rgba(255, 170, 0, 0.3);
+    }
 
-    <p><strong>💰 PREMIOS:</strong><br>
-    CADA KILL SE PAGA 💰 500Bs <em>(Ganes o Pierdas)</em><br>
-    Por cada kill te ganas 1 $</p>
+    .ff-content {
+        display: none;
+        animation: fadeIn 0.3s ease forwards;
+    }
 
-    <div class="pago-movil">
-        <h3>💳 PAGO MÓVIL:</h3>
-        <p>Cédula: V33549725</p>
-        <p>Teléfono: 04123374708</p>
-        <p>Banco: 0105 - Mercantil 🏦</p>
-    </div>
+    .ff-content.active {
+        display: block;
+    }
 
-    <p>📌 Enviar captura del pago + nombre del FREE Directamente copiado del juego</p>
+    /* Tarjeta del Torneo */
+    .tarjeta-modo {
+        background: #16161f;
+        border: 1px solid #2a2a35;
+        border-radius: 10px;
+        padding: 30px;
+        max-width: 450px;
+        margin: 0 auto;
+        text-align: center;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    }
+
+    .mapa-tag {
+        background-color: rgba(255, 170, 0, 0.15);
+        color: #ffaa00;
+        padding: 6px 15px;
+        border-radius: 4px;
+        font-weight: bold;
+        display: inline-block;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    .dias-juego {
+        color: #7e7e86;
+        font-size: 15px;
+        margin-bottom: 25px;
+    }
+
+    .dias-juego strong {
+        color: #fff;
+    }
+
+    .btn-inscribir {
+        background-color: #ff4655;
+        color: white;
+        border: none;
+        padding: 12px 35px;
+        font-weight: 700;
+        text-transform: uppercase;
+        border-radius: 6px;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.2s;
+    }
+
+    .btn-inscribir:hover {
+        background-color: #e03b48;
+    }
+
+    /* Ventanas Emergentes (Modales) */
+    .modal-ff {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.85);
+        backdrop-filter: blur(5px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .modal-ff.open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .modal-box {
+        background-color: #111116;
+        border: 1px solid #ffaa00;
+        border-radius: 12px;
+        max-width: 500px;
+        width: 90%;
+        padding: 30px;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+    }
+
+    .btn-cerrar {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: none;
+        border: none;
+        color: #7e7e86;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .modal-box h4 {
+        color: #ffaa00;
+        text-transform: uppercase;
+        font-size: 20px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #2a2a35;
+        padding-bottom: 10px;
+    }
+
+    .info-torneo-lista {
+        list-style: none;
+        margin-bottom: 25px;
+        text-align: left;
+    }
+
+    .info-torneo-lista li {
+        margin-bottom: 10px;
+        font-size: 15px;
+        color: #c4c4cb;
+    }
+
+    .info-torneo-lista strong {
+        color: #fff;
+    }
+
+    /* Caja de Pago Móvil */
+    .pago-movil-box {
+        background-color: #08080a;
+        border: 1px solid #2a2a35;
+        padding: 15px;
+        border-radius: 6px;
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    .pago-movil-box p {
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+
+    .pago-titulo {
+        color: #ffaa00;
+        font-weight: bold;
+        margin-bottom: 10px !important;
+        text-transform: uppercase;
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+
+    .texto-resaltante {
+        background-color: rgba(255, 70, 85, 0.1);
+        border-left: 4px solid #ff4655;
+        padding: 10px;
+        font-weight: bold;
+        color: #fff;
+        margin-bottom: 15px;
+        text-align: left;
+        font-size: 15px;
+    }
+
+    .texto-instruccion {
+        font-size: 13px;
+        color: #7e7e86;
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    /* Botón de WhatsApp */
+    .btn-whatsapp {
+        background-color: #25d366;
+        color: #000;
+        font-weight: 800;
+        text-transform: uppercase;
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 14px;
+        border-radius: 6px;
+        transition: background-color 0.2s, transform 0.2s;
+    }
+
+    .btn-whatsapp:hover {
+        background-color: #20ba5a;
+        transform: scale(1.02);
+    }
+</style>
+
+<!-- Pestañas Modos de Juego -->
+<div class="ff-tabs">
+    <button id="tab-solo" class="btn-subtab active" onclick="cambiarModoFF('solo')">Modo Solo</button>
+    <button id="tab-duo" class="btn-subtab" onclick="cambiarModoFF('duo')">Modo Dúo</button>
 </div>
-</strong><br>
-                        
-                        
-                        
-                    </div>
-                    <span class="price-tag">Inscripción: 1200 Bs</span>
-                    
-                    <div class="file-upload-wrapper">
-                        <label>📸 Selecciona tu comprobante de la galería:</label>
-                        <input type="file" accept="image/*" id="file-duo">
-                    </div>
 
-<a href="https://wa.me/584123374780?text=Hola!%20He%20realizado%20el%20pago%20de%20600%20Bs%20para%20el%20Torneo%20SOLO.%20Ya%20tengo%20la%20foto%20lista." class="btn-whatsapp">
-                        <span>📤 Enviar por WhatsApp</span>
-                    </a>
-                </div>
-            </div>
+<!-- CONTENIDO MODO SOLO -->
+<div id="ff-modo-solo" class="ff-content active">
+    <div class="tarjeta-modo">
+        <span class="mapa-tag">🗺️ Mapa Bermuda</span>
+        <div class="dias-juego">Días de juego: <strong>Lunes y Miércoles</strong></div>
+        <button class="btn-inscribir" onclick="abrirModalFF('modal-solo')">Inscribir Ahora</button>
+    </div>
+</div>
+
+<!-- CONTENIDO MODO DÚO -->
+<div id="ff-modo-duo" class="ff-content">
+    <div class="tarjeta-modo">
+        <span class="mapa-tag">🗺️ Mapa Bermuda</span>
+        <div class="dias-juego">Días de juego: <strong>Martes, Jueves, Viernes y Sábado</strong></div>
+        <button class="btn-inscribir" onclick="abrirModalFF('modal-duo')">Inscribir Ahora</button>
+    </div>
+</div>
+
+<!-- ========================================== -->
+<!-- MODAL INCRIPCIÓN SOLO                      -->
+<!-- ========================================== -->
+<div id="modal-solo" class="modal-ff">
+    <div class="modal-box">
+        <button class="btn-cerrar" onclick="cerrarModalFF('modal-solo')">&times;</button>
+        <h4>Inscripción Modo Solo</h4>
+        
+        <ul class="info-torneo-lista">
+            <li>🔥 <strong>Torneo:</strong> Hoy</li>
+            <li>🎮 <strong>Modalidad:</strong> Battle Royale</li>
+            <li>👥 <strong>Modo:</strong> Solo por Kills</li>
+            <li>📱 <strong>Dispositivos:</strong> Solo Móvil</li>
+            <li>💰 <strong>Premios:</strong> Cada kill se paga a 550 Bs (¡Te ganas $1 por cada Kill!)</li>
+        </ul>
+
+        <div class="pago-movil-box">
+            <p class="pago-titulo">💳 Método de Pago Móvil</p>
+            <p><strong>Banco:</strong> Mercantil</p>
+            <p><strong>Cédula:</strong> 33.549.725</p>
+            <p><strong>Teléfono:</strong> 0412-3374708</p>
         </div>
 
-    </div>
-<div id="countdown-torneo" style="
-    background: #000; 
-    border: 2px solid #ff4500; 
-    border-radius: 8px; 
-    padding: 12px; 
-    width: fit-content; 
-    margin: 15px auto; 
-    text-align: center;
-    box-shadow: 0 0 10px rgba(255, 69, 0, 0.4);
-    font-family: Arial, sans-serif;">
-    
-    <div style="color: #fff; font-size: 12px; font-weight: bold; text-transform: uppercase; margin-bottom: 8px;">
-        EL TORNEO en duo COMIENZA EN:
-    </div>
+        <div class="texto-resaltante">
+            🚨 Inscripción: 650 Bolívares
+        </div>
 
-    <div style="display: flex; justify-content: center; gap: 10px; color: #ff4500; font-weight: 900; font-size: 22px;">
-        <div><span id="h-torneo" style="color: #fff;">00</span><small style="font-size: 9px; display: block; color: #888;">HRS</small></div>
-        <div style="line-height: 24px;">:</div>
-        <div><span id="m-torneo" style="color: #fff;">00</span><small style="font-size: 9px; display: block; color: #888;">MIN</small></div>
-        <div style="line-height: 24px;">:</div>
-        <div><span id="s-torneo" style="color: #fff;">00</span><small style="font-size: 9px; display: block; color: #888;">SEG</small></div>
+        <p class="texto-instruccion">
+            ⚠️ <strong>Nota:</strong> Al presionar el botón inferior se te abrirá tu WhatsApp. Recuerda enviar el capture del pago junto con el nombre del jugador copiado directamente de Free Fire de manera exacta.
+        </p>
+
+        <!-- Botón verde de WhatsApp -->
+        <a href="https://wa.me/584123374708?text=%C2%A1Hola!%20Quiero%20inscribirme%20en%20el%20Torneo%20de%20Free%20Fire%20en%20Modo%20Solo.%20Adjunto%20comprobante%20de%20pago.%20Mi%20Nombre%20en%20juego%20es%3A%20" 
+           target="_blank" class="btn-whatsapp">
+            💬 Enviar por WhatsApp
+        </a>
     </div>
 </div>
 
+<!-- ========================================== -->
+<!-- MODAL INCRIPCIÓN DÚO                      -->
+<!-- ========================================== -->
+<div id="modal-duo" class="modal-ff">
+    <div class="modal-box">
+        <button class="btn-cerrar" onclick="cerrarModalFF('modal-duo')">&times;</button>
+        <h4>Inscripción Modo Dúo</h4>
+        
+        <ul class="info-torneo-lista">
+            <li>🔥 <strong>Torneo:</strong> Hoy</li>
+            <li>🎮 <strong>Modalidad:</strong> Battle Royale en Dúo</li>
+            <li>👥 <strong>Modo:</strong> Dúo por Kills</li>
+            <li>📱 <strong>Dispositivos:</strong> Solo Móvil</li>
+            <li>💰 <strong>Premios:</strong> Cada kill se paga a 550 Bs (¡Te ganas $1 por cada Kill!)</li>
+            <li>💵 <strong>Costos:</strong> Un solo jugador: 650 Bs | Dúo Completo: 1.300 Bs</li>
+        </ul>
+
+        <div class="pago-movil-box">
+            <p class="pago-titulo">💳 Método de Pago Móvil</p>
+            <p><strong>Banco:</strong> Mercantil</p>
+            <p><strong>Cédula:</strong> 33.549.725</p>
+            <p><strong>Teléfono:</strong> 0412-3374708</p>
+        </div>
+
+        <div class="texto-resaltante">
+            🚨 Dúo Completo: 1.300 Bolívares
+        </div>
+
+        <p class="texto-instruccion">
+            ⚠️ <strong>Nota:</strong> Al presionar el botón inferior se te abrirá tu WhatsApp. Recuerda enviar el capture del pago junto con el nombre de los jugadores copiados directamente de Free Fire de manera exacta.
+        </p>
+
+        <!-- Botón verde de WhatsApp -->
+        <a href="https://wa.me/584123374708?text=%C2%A1Hola!%20Quiero%20inscribirme%20en%20el%20Torneo%20de%20Free%20Fire%20en%20Modo%20D%C3%BAo.%20Adjunto%20comprobante%20de%20pago.%20Los%20Nombres%20en%20juego%20son%3A%20" 
+           target="_blank" class="btn-whatsapp">
+            💬 Enviar por WhatsApp
+        </a>
+    </div>
+</div>
+
+<!-- Controladores de las funciones -->
 <script>
-    // CONFIGURACIÓN PARA HOY A LAS 9:30 PM
-    const horaInicio = new Date("May 4, 2026 21:30:00").getTime(
+    function cambiarModoFF(modo) {
+        // Control de vistas
+        document.getElementById('ff-modo-solo').classList.remove('active');
+        document.getElementById('ff-modo-duo').classList.remove('active');
+        document.getElementById('tab-solo').classList.remove('active');
+        document.getElementById('tab-duo').classList.remove('active');
 
-    const x = setInterval(function() {
-        const ahora = new Date().getTime();
-        const faltan = horaInicio - ahora;
-
-        // Si ya llegamos a las 9:30 PM
-        if (faltan < 0) {
-            clearInterval(x);
-            document.getElementById("countdown-torneo").innerHTML = "<b style='color:#00ff00; font-size:16px;'>¡EL TORNEO HA INICIADO!</b>";
-            return;
+        if(modo === 'solo') {
+            document.getElementById('ff-modo-solo').classList.add('active');
+            document.getElementById('tab-solo').classList.add('active');
+        } else {
+            document.getElementById('ff-modo-duo').classList.add('active');
+            document.getElementById('tab-duo').classList.add('active');
         }
+    }
 
-        // Cálculos
-        const h = Math.floor((faltan % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const m = Math.floor((faltan % (1000 * 60 * 60)) / (1000 * 60));
-        const s = Math.floor((faltan % (1000 * 60)) / 1000);
+    function abrirModalFF(idModal) {
+        document.getElementById(idModal).classList.add('open');
+    }
 
-        // Actualizar los números
-        document.getElementById("h-torneo").innerText = h.toString().padStart(2, '0');
-        document.getElementById("m-torneo").innerText = m.toString().padStart(2, '0');
-        document.getElementById("s-torneo").innerText = s.toString().padStart(2, '0');
-    }, 1000);
+    function cerrarModalFF(idModal) {
+        document.getElementById(idModal).classList.remove('open');
+    }
 </script>
-    
+</p>
+            </div>
+            <!-- FIN DEL BLOQUE DE FREE FIRE -->
+        </div>
+
+        <!-- ========================================== -->
+        <!-- APARTADO 2: BLOCK STRIKE                   -->
+        <!-- ========================================== -->
+        <div id="apartado-block-strike" class="contenido-torneo">
+            <h3 class="titulo-bs"><span>⚔️</span> Torneos Block Strike</h3>
+            
+            <!-- PEGA TU CÓDIGO DE BLOCK STRIKE AQUÍ ABAJO -->
+            <div class="zona-editable">
+                <p><!-- ========================================== -->
+<!-- CÓDIGO INTERNO PARA LA SECCIÓN DE BLOCK STRIKE -->
+<!-- ========================================== -->
+<style>
+    /* Estilos internos para el módulo de Block Strike */
+    .bs-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+
+    .btn-subtab-bs {
+        background-color: #1a1a24;
+        border: 1px solid #333;
+        color: #fff;
+        padding: 10px 25px;
+        font-weight: 700;
+        text-transform: uppercase;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .btn-subtab-bs.active {
+        background-color: #00e5ff;
+        color: #000;
+        border-color: #00e5ff;
+        box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+    }
+
+    .bs-content {
+        display: none;
+        animation: fadeIn 0.3s ease forwards;
+    }
+
+    .bs-content.active {
+        display: block;
+    }
+
+    /* Tarjeta del Torneo */
+    .tarjeta-modo-bs {
+        background: #16161f;
+        border: 1px solid #2a2a35;
+        border-radius: 10px;
+        padding: 30px;
+        max-width: 450px;
+        margin: 0 auto;
+        text-align: center;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    }
+
+    .mapa-tag-bs {
+        background-color: rgba(0, 229, 255, 0.15);
+        color: #00e5ff;
+        padding: 6px 15px;
+        border-radius: 4px;
+        font-weight: bold;
+        display: inline-block;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    .dias-juego-bs {
+        color: #7e7e86;
+        font-size: 15px;
+        margin-bottom: 25px;
+    }
+
+    .dias-juego-bs strong {
+        color: #fff;
+    }
+
+    .btn-inscribir-bs {
+        background-color: #ff4655;
+        color: white;
+        border: none;
+        padding: 12px 35px;
+        font-weight: 700;
+        text-transform: uppercase;
+        border-radius: 6px;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.2s;
+    }
+
+    .btn-inscribir-bs:hover {
+        background-color: #e03b48;
+    }
+
+    /* Ventanas Emergentes (Modales) */
+    .modal-bs {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.85);
+        backdrop-filter: blur(5px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .modal-bs.open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .modal-box-bs {
+        background-color: #111116;
+        border: 1px solid #00e5ff;
+        border-radius: 12px;
+        max-width: 500px;
+        width: 90%;
+        padding: 30px;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+    }
+
+    .btn-cerrar-bs {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: none;
+        border: none;
+        color: #7e7e86;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .modal-box-bs h4 {
+        color: #00e5ff;
+        text-transform: uppercase;
+        font-size: 20px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #2a2a35;
+        padding-bottom: 10px;
+    }
+
+    .info-torneo-lista-bs {
+        list-style: none;
+        margin-bottom: 25px;
+        text-align: left;
+    }
+
+    .info-torneo-lista-bs li {
+        margin-bottom: 10px;
+        font-size: 15px;
+        color: #c4c4cb;
+    }
+
+    .info-torneo-lista-bs strong {
+        color: #fff;
+    }
+
+    /* Caja de Pago Móvil */
+    .pago-movil-box-bs {
+        background-color: #08080a;
+        border: 1px solid #2a2a35;
+        padding: 15px;
+        border-radius: 6px;
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    .pago-movil-box-bs p {
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+
+    .pago-titulo-bs {
+        color: #00e5ff;
+        font-weight: bold;
+        margin-bottom: 10px !important;
+        text-transform: uppercase;
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+
+    .texto-resaltante-bs {
+        background-color: rgba(255, 70, 85, 0.1);
+        border-left: 4px solid #ff4655;
+        padding: 10px;
+        font-weight: bold;
+        color: #fff;
+        margin-bottom: 15px;
+        text-align: left;
+        font-size: 15px;
+    }
+
+    .texto-instruccion-bs {
+        font-size: 13px;
+        color: #7e7e86;
+        margin-bottom: 20px;
+        text-align: left;
+        }
+    /* Botón de WhatsApp */
+    .btn-whatsapp-bs {
+        background-color: #25d366;
+        color: #000;
+        font-weight: 800;
+        text-transform: uppercase;
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 14px;
+        border-radius: 6px;
+        transition: background-color 0.2s, transform 0.2s;
+    }
+
+    .btn-whatsapp-bs:hover {
+        background-color: #20ba5a;
+        transform: scale(1.02);
+    }
+</style>
+
+<!-- Pestañas Modos de Juego Block Strike -->
+<div class="bs-tabs">
+    <button id="tab-solo-bs" class="btn-subtab-bs active" onclick="cambiarModoBS('solo')">Modo Solo</button>
+    <button id="tab-duo-bs" class="btn-subtab-bs" onclick="cambiarModoBS('duo')">Modo Dúo</button>
+</div>
+
+<!-- CONTENIDO MODO SOLO -->
+<div id="bs-modo-solo" class="bs-content active">
+    <div class="tarjeta-modo-bs">
+        <span class="mapa-tag-bs">🗺️ Isla Siniestra</span>
+        <div class="dias-juego-bs">Días de juego: <strong>Lunes y Miércoles</strong></div>
+        <button class="btn-inscribir-bs" onclick="abrirModalBS('modal-solo-bs')">Inscribir Ahora</button>
+    </div>
+</div>
+
+<!-- CONTENIDO MODO DÚO -->
+<div id="bs-modo-duo" class="bs-content">
+    <div class="tarjeta-modo-bs">
+        <span class="mapa-tag-bs">🗺️ Isla Siniestra</span>
+        <div class="dias-juego-bs">Días de juego: <strong>Martes, Jueves, Viernes y Sábado</strong></div>
+        <button class="btn-inscribir-bs" onclick="abrirModalBS('modal-duo-bs')">Inscribir Ahora</button>
+    </div>
+</div>
+
+<!-- ========================================== -->
+<!-- MODAL INCRIPCIÓN SOLO (BLOCK STRIKE)       -->
+<!-- ========================================== -->
+<div id="modal-solo-bs" class="modal-bs">
+    <div class="modal-box-bs">
+        <button class="btn-cerrar-bs" onclick="cerrarModalBS('modal-solo-bs')">&times;</button>
+        <h4>Inscripción Modo Solo</h4>
+        
+        <ul class="info-torneo-lista-bs">
+            <li>🔥 <strong>Torneo:</strong> Hoy</li>
+            <li>🎮 <strong>Modalidad:</strong> Battle Royale</li>
+            <li>👥 <strong>Modo:</strong> Solo por Kills</li>
+            <li>📱 <strong>Dispositivos:</strong> Solo Móvil</li>
+            <li>💰 <strong>Premios:</strong> Cada kill se paga a 550 Bs (¡Te ganas $1 por cada Kill!)</li>
+        </ul>
+
+        <div class="pago-movil-box-bs">
+            <p class="pago-titulo-bs">💳 Método de Pago Móvil</p>
+            <p><strong>Banco:</strong> Mercantil</p>
+            <p><strong>Cédula:</strong> 33.549.725</p>
+            <p><strong>Teléfono:</strong> 0412-3374708</p>
+        </div>
+
+        <div class="texto-resaltante-bs">
+            🚨 Inscripción: 775 Bolívares
+        </div>
+
+        <p class="texto-instruccion-bs">
+            ⚠️ <strong>Nota:</strong> Al presionar el botón inferior se te abrirá tu WhatsApp. Recuerda enviar el capture del pago junto con el nombre del jugador copiado directamente de Block Strike de manera exacta.
+        </p>
+
+        <!-- Botón verde de WhatsApp -->
+        <a href="https://wa.me/584123374708?text=%C2%A1Hola!%20Quiero%20inscribirme%20en%20el%20Torneo%20de%20Block%20Strike%20en%20Modo%20Solo.%20Adjunto%20comprobante%20de%20pago.%20Mi%20Nombre%20en%20juego%20es%3A%20" 
+           target="_blank" class="btn-whatsapp-bs">
+            💬 Enviar por WhatsApp
+        </a>
+    </div>
+</div>
+
+<!-- ========================================== -->
+<!-- MODAL INCRIPCIÓN DÚO (BLOCK STRIKE)       -->
+<!-- ========================================== -->
+<div id="modal-duo-bs" class="modal-bs">
+    <div class="modal-box-bs">
+        <button class="btn-cerrar-bs" onclick="cerrarModalBS('modal-duo-bs')">&times;</button>
+        <h4>Inscripción Modo Dúo</h4>
+        
+        <ul class="info-torneo-lista-bs">
+            <li>🔥 <strong>Torneo:</strong> Hoy</li>
+            <li>🎮 <strong>Modalidad:</strong> Battle Royale en Dúo</li>
+            <li>👥 <strong>Modo:</strong> Dúo por Kills</li>
+            <li>📱 <strong>Dispositivos:</strong> Solo Móvil</li>
+            <li>💰 <strong>Premios:</strong> Cada kill se paga a 550 Bs (¡Te ganas $1 por cada Kill!)</li>
+            <li>💵 <strong>Costos:</strong> Un solo jugador: 775 Bs | Dúo Completo: 1.550 Bs</li>
+        </ul>
+
+        <div class="pago-movil-box-bs">
+            <p class="pago-titulo-bs">💳 Método de Pago Móvil</p>
+            <p><strong>Banco:</strong> Mercantil</p>
+            <p><strong>Cédula:</strong> 33.549.725</p>
+            <p><strong>Teléfono:</strong> 0412-3374708</p>
+        </div>
+
+        <div class="texto-resaltante-bs">
+            🚨 Dúo Completo: 1.550 Bolívares
+        </div>
+
+        <p class="texto-instruccion-bs">
+            ⚠️ <strong>Nota:</strong> Al presionar el botón inferior se te abrirá tu WhatsApp. Recuerda enviar el capture del pago junto con el nombre de los jugadores copiados directamente de Block Strike de manera exacta.
+        </p>
+
+        <!-- Botón verde de WhatsApp -->
+        <a href="https://wa.me/584123374708?text=%C2%A1Hola!%20Quiero%20inscribirme%20en%20el%20Torneo%20de%20Block%20Strike%20en%20Modo%20D%C3%BAo.%20Adjunto%20comprobante%20de%20pago.%20Los%20Nombres%20en%20juego%20son%3A%20" 
+           target="_blank" class="btn-whatsapp-bs">
+            💬 Enviar por WhatsApp
+        </a>
+    </div>
+</div>
+                
+<!-- Controladores de las funciones Block Strike -->
+<script>
+    function cambiarModoBS(modo) {
+        document.getElementById('bs-modo-solo').classList.remove('active');
+        document.getElementById('bs-modo-duo').classList.remove('active');
+        document.getElementById('tab-solo-bs').classList.remove('active');
+        document.getElementById('tab-duo-bs').classList.remove('active');
+
+        if(modo === 'solo') {
+            document.getElementById('bs-modo-solo').classList.add('active');
+            document.getElementById('tab-solo-bs').classList.add('active');
+        } else {
+            document.getElementById('bs-modo-duo').classList.add('active');
+            document.getElementById('tab-duo-bs').classList.add('active');
+        }
+    }
+
+    function abrirModalBS(idModal) {
+        document.getElementById(idModal).classList.add('open');
+    }
+
+    function cerrarModalBS(idModal) {
+        document.getElementById(idModal).classList.remove('open');
+    }
+</script>
+</p>
+            </div>
+            <!-- FIN DEL BLOQUE DE BLOCK STRIKE -->
+        </div>
+
+    </div>
+
     <footer>
-        &copy; 2026 Games Mafia Studios - game mafia 
+        &copy; 2026 Games Mafia — Elite Tournament Organization.
     </footer>
 
     <script>
-        function togglePayment(id) {
-            const sections = document.querySelectorAll('.payment-section');
-            sections.forEach(section => {
-                if(section.id !== id) section.style.display = 'none';
-            });
-
-            const target = document.getElementById(id);
-            target.style.display = (target.style.display === "block") ? "none" : "block";
+        function mostrarApartado(juego) {
+            // Ocultar zonas
+            document.getElementById('apartado-free-fire').style.display = 'none';
+            document.getElementById('apartado-block-strike').style.display = 'none';
+            
+            // Quitar estados activos a los botones
+            document.getElementById('btn-ff').classList.remove('activo');
+            document.getElementById('btn-bs').classList.remove('activo');
+            
+            // Mostrar y activar según la elección
+            if(juego === 'free-fire') {
+                document.getElementById('apartado-free-fire').style.display = 'block';
+                document.getElementById('btn-ff').classList.add('activo');
+            } else if(juego === 'block-strike') {
+                document.getElementById('apartado-block-strike').style.display = 'block';
+                document.getElementById('btn-bs').classList.add('activo');
+            }
         }
     </script>
-
-  <div id="ranking" style="background: rgba(20, 20, 20, 0.9); border: 2px solid #ff4500; border-radius: 15px; padding: 20px; margin: 20px auto; max-width: 500px; font-family: 'Arial', sans-serif; box-shadow: 0 0 15px #ff4500;">
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torneos Games Mafia | eSports</title>
     
-    <h2 style="text-align: center; color: #ff4500; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px;">
-        💀 top 1 se gana 110 diamantes gratis 💀
-    </h2>
-
-    <table style="width: 100%; border-collapse: collapse; color: white; text-align: left;">
-        <thead>
-            <tr style="border-bottom: 2px solid #555;">
-                <th style="padding: 10px; color: #ff4500;">#</th>
-                <th style="padding: 10px; color: #ff4500;">JUGADOR</th>
-                <th style="padding: 10px; color: #ff4500; text-align: center;">KILLS</th>
-            </tr>
-        </thead>
-        <tbody id="tabla-cuerpo">
-            <tr style="background: rgba(255, 69, 0, 0.2); border-bottom: 1px solid #333;">
-                <td style="padding: 12px; font-weight: bold; color: #ffd700;">🥇 1</td>
-                <td style="padding: 12px; font-weight: bold;">sin jugador</td>
-                <td style="padding: 12px; text-align: center; font-weight: bold; color: #00ff00;">0</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #333;">
-                <td style="padding: 12px; color: #c0c0c0;">🥈 2</td>
-                <td style="padding: 12px;">sin jugqdor </td>
-                <td style="padding: 12px; text-align: center; color: #00ff00;">0</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #333;">
-                <td style="padding: 12px; color: #cd7f32;">🥉 3</td>
-                <td style="padding: 12px;">sin jugqdor </td>
-                <td style="padding: 12px; text-align: center; color: #00ff00;"></td>
-            </tr>
-            <tr style="border-bottom: 1px solid #333;">
-                <td style="padding: 10px;">4</td>
-                <td style="padding: 10px;">sin jugador</td>
-                <td style="padding: 10px; text-align: center;">0</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #333;">
-                <td style="padding: 10px;">5</td>
-                <td style="padding: 10px;">sim jugador </td>
-                <td style="padding: 10px; text-align: center;">0</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #333;">
-                <td style="padding: 10px;">6</td>
-                <td style="padding: 10px;">sin jugador</td>
-                <td style="padding: 10px; text-align: center;">0</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #333;">
-                <td style="padding: 10px;">7</td>
-                <td style="padding: 10px;">sin jugador</td>
-                <td style="padding: 10px; text-align: center;">0</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #333;">
-                <td style="padding: 10px;">8</td>
-                <td style="padding: 10px;">sin jugador</td>
-                <td style="padding: 10px; text-align: center;">0</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #333;">
-                <td style="padding: 10px;">9</td>
-                <td style="padding: 10px;">sin jugador</td>
-                <td style="padding: 10px; text-align: center;">0</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #333;">
-                <td style="padding: 10px;">10</td>
-                <td style="padding: 10px;">sin jugador</td>
-                <td style="padding: 10px; text-align: center;">0</td>
-            </tr>
-        </tbody>
-    </table>
+    <!-- Fuentes Premium -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     
-    <p style="text-align: center; color: #aaa; font-size: 12px; margin-top: 15px;">
-        Se actualiza después de cada torneo.
-    </p>
-</div>
-      <div style="text-align: center; margin: 20px;">
-    <button id="btnReglas" style="background-color: #e74c3c; color: white; padding: 15px 30px; border: none; border-radius: 8px; font-size: 18px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
-        📜 Ver Reglas del Torneo
-    </button>
-</div>
+    <style>
+        /* ==========================================================================
+           VARIABLES Y DISEÑO GENERAL
+           ========================================================================== */
+        :root {
+            --bg-deep: #030305;
+            --bg-card: rgba(13, 13, 18, 0.75);
+            --color-neon-red: #ff3344;
+            --color-freefire: #ffaa00;
+            --color-blockstrike: #00f0ff;
+            --text-pure: #ffffff;
+            --text-muted: #8fa0af;
+            --neon-shadow-red: 0 0 20px rgba(255, 51, 68, 0.4);
+            --neon-shadow-ff: 0 0 20px rgba(255, 170, 0, 0.4);
+            --neon-shadow-bs: 0 0 20px rgba(0, 240, 255, 0.4);
+        }        
 
-<div id="modalReglas" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); overflow-y: auto;">
-    <div style="background-color: #1a1a1a; color: white; margin: 10% auto; padding: 25px; border: 2px solid #e74c3c; width: 80%; max-width: 600px; border-radius: 15px; font-family: sans-serif; line-height: 1.6;">
-        <h2 style="color: #e74c3c; text-align: center; text-transform: uppercase;">Reglamento Oficial</h2>
-        <hr style="border: 0.5px solid #444;">
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-deep);
+            background-image: 
+                linear-gradient(rgba(255, 51, 68, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 51, 68, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            color: var(--text-pure);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 18px;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 5px;
+            background: linear-gradient(90deg, var(--color-freefire), var(--color-neon-red), var(--color-blockstrike), var(--color-freefire));
+            background-size: 300% 100%;
+            animation: barraEnergia 8s linear infinite;
+            z-index: 9999;
+        }
+
+        @keyframes barraEnergia { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
+
+        /* ==========================================================================
+           HEADER Y PRESENTACIÓN
+           ========================================================================== */
+        header {
+            background: linear-gradient(180deg, rgba(5, 5, 8, 0.95) 0%, rgba(3, 3, 5, 0.8) 100%);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 51, 68, 0.15);
+            padding: 35px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 45px; font-weight: 900; letter-spacing: 6px;
+            text-transform: uppercase; text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+
+        header h1 span {
+            color: var(--color-neon-red);
+            text-shadow: var(--neon-shadow-red);
+            animation: parpadeoGlow 3s infinite alternate;
+        }
+
+        @keyframes parpadeoGlow {
+            0%, 92%, 94%, 100% { opacity: 1; text-shadow: var(--neon-shadow-red); }
+            93% { opacity: 0.8; text-shadow: none; }
+        }
+
+        .main-container { max-width: 1000px; margin: 0 auto; padding: 50px 20px; }
+
+        .presentacion {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 3px solid var(--color-neon-red);
+            padding: 45px; border-radius: 16px;
+            text-align: center; margin-bottom: 50px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+        }
+
+        .presentacion h2 { font-family: 'Orbitron', sans-serif; font-size: 28px; color: #fff; margin-bottom: 15px; text-transform: uppercase; }
+        .presentacion p { color: var(--text-muted); line-height: 1.6; }
+
+        /* ==========================================================================
+           MENÚ PRINCIPAL Y CONTENEDORES
+           ========================================================================== */
+        .menu-apartados { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; }
+
+        .btn-apartado {
+            font-family: 'Orbitron', sans-serif; padding: 20px; font-size: 18px; font-weight: 700;
+            text-transform: uppercase; background: rgba(20, 20, 28, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-ff { color: var(--color-freefire); border-bottom: 3px solid rgba(255,170,0,0.3); }
+        .btn-ff:hover, .btn-ff.activo { background: var(--color-freefire); color: #000; box-shadow: var(--neon-shadow-ff); transform: translateY(-3px); }
+
+        .btn-bs { color: var(--color-blockstrike); border-bottom: 3px solid rgba(0,240,255,0.3); }
+        .btn-bs:hover, .btn-bs.activo { background: var(--color-blockstrike); color: #000; box-shadow: var(--neon-shadow-bs); transform: translateY(-3px); }
+
+        .contenido-torneo { display: none; animation: fadeIn 0.4s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ==========================================================================
+           ESTILOS INTERNOS DE TORNEOS (TABS Y TARJETAS)
+           ========================================================================== */
+        .tabs-juego { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; }
+
+        .btn-subtab {
+            font-family: 'Orbitron', sans-serif; background: #0d0d12; border: 1px solid #222;
+            color: #fff; padding: 10px 25px; font-weight: 700; text-transform: uppercase;
+            border-radius: 6px; cursor: pointer; transition: all 0.3s;
+        }
+
+        .btn-subtab.active-ff { background: var(--color-freefire); color: #000; box-shadow: var(--neon-shadow-ff); border-color: var(--color-freefire); }
+        .btn-subtab.active-bs { background: var(--color-blockstrike); color: #000; box-shadow: var(--neon-shadow-bs); border-color: var(--color-blockstrike); }
+
+        .modo-content { display: none; }
+        .modo-content.active { display: block; animation: fadeIn 0.3s ease forwards; }
+
+        .tarjeta-modo {
+            background: linear-gradient(145deg, rgba(20, 20, 28, 0.9), rgba(10, 10, 14, 0.95));
+            border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 16px;
+            padding: 40px; max-width: 480px; margin: 0 auto; text-align: center;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+        }
+
+        .mapa-tag {
+            font-family: 'Orbitron', sans-serif; padding: 8px 20px; border-radius: 6px; font-weight: 900;
+            display: inline-block; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .mapa-ff { background: rgba(255, 170, 0, 0.1); color: var(--color-freefire); border: 1px solid rgba(255, 170, 0, 0.2); }
+        .mapa-bs { background: rgba(0, 240, 255, 0.1); color: var(--color-blockstrike); border: 1px solid rgba(0, 240, 255, 0.2); }
+
+        .dias-juego { color: var(--text-muted); margin-bottom: 25px; }
+        .dias-juego strong { color: #fff; }
+
+        .btn-inscribir {
+            font-family: 'Orbitron', sans-serif; background: linear-gradient(90deg, #ff3344, #dd1122);
+            color: white; border: none; padding: 15px 35px; font-weight: 900;
+            text-transform: uppercase; border-radius: 6px; cursor: pointer; width: 100%; transition: 0.3s;
+        }
+        .btn-inscribir:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255, 51, 68, 0.5); }
+
+        /* ==========================================================================
+           VENTANAS MODALES Y WHATSAPP
+           ========================================================================== */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(5px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 2000; opacity: 0; pointer-events: none; transition: 0.3s;
+        }
+        .modal-overlay.open { opacity: 1; pointer-events: auto; }
+
+        .modal-box {
+            background: #0b0b0f; border-radius: 12px; width: 90%; max-width: 500px;
+            padding: 30px; position: relative; max-height: 90vh; overflow-y: auto;
+        }
+        .modal-ff-box { border: 1px solid var(--color-freefire); box-shadow: var(--neon-shadow-ff); }
+        .modal-bs-box { border: 1px solid var(--color-blockstrike); box-shadow: var(--neon-shadow-bs); }
+
+        .btn-cerrar { position: absolute; top: 15px; right: 20px; background: none; border: none; color: #fff; font-size: 25px; cursor: pointer; }
         
-        <ul style="list-style-type: square; padding-left: 20px;">
-            <li><strong>Dispositivos:</strong> Solo se permite la participación de jugadores en dispositivos móviles. Emuladores prohibidos.</li>
-            <li><strong>Juego Limpio:</strong> Estrictamente prohibido el uso de hacks, archivos modificados, macros o cualquier ventaja externa. El uso de estos conlleva descalificación inmediata.</li>
-            <li><strong>Inscripción:</strong> Es obligatorio enviar el comprobante de pago (Capture) junto con el nombre exacto del jugador para validar la entrada.</li>
-            <li><strong>Puntualidad:</strong> Los jugadores deben entrar a la sala a la hora citada. Quien no esté presente al momento de iniciar quedará descalificado.</li>
-            <li><strong>Conducta:</strong> El respeto entre competidores es obligatorio. El lenguaje ofensivo o la toxicidad extrema resultará en la expulsión del torneo.</li>
-            <li><strong>Premios:</strong> Los ganadores tienen un plazo máximo de <strong>5 horas</strong> después de finalizar el torneo para reclamar su premio. Pasado ese tiempo, el reclamo no será válido.</li>
-        </ul>
+        .modal-box h4 { font-family: 'Orbitron', sans-serif; text-transform: uppercase; font-size: 22px; margin-bottom: 20px; border-bottom: 1px solid #222; padding-bottom: 10px; }
+        .titulo-modal-ff { color: var(--color-freefire); }
+        .titulo-modal-bs { color: var(--color-blockstrike); }
 
-        <button id="btnCerrar" style="display: block; margin: 20px auto 0; background-color: #555; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Cerrar</button>
+        .info-lista { list-style: none; margin-bottom: 20px; color: #c4c4cb; font-size: 16px; }
+        .info-lista li { margin-bottom: 8px; }
+        .info-lista strong { color: #fff; }
+
+        .pago-movil-box { background: #000; border: 1px dashed #333; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+        .pago-titulo { font-family: 'Orbitron', sans-serif; font-size: 14px; margin-bottom: 10px; }
+        .pago-ff { color: var(--color-freefire); }
+        .pago-bs { color: var(--color-blockstrike); }
+
+        .texto-resaltante {
+            background: rgba(255, 51, 68, 0.1); border-left: 4px solid var(--color-neon-red);
+            padding: 12px; font-weight: bold; color: #fff; margin-bottom: 15px; font-size: 18px;
+        }
+
+        .texto-instruccion { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; }
+
+        .btn-whatsapp {
+            display: block; text-align: center; text-decoration: none;
+            background: #00ff66; color: #000; padding: 15px; border-radius: 8px;
+            font-family: 'Orbitron', sans-serif; font-weight: 900; text-transform: uppercase;
+            transition: 0.2s;
+        }
+        .btn-whatsapp:hover { background: #00de58; box-shadow: 0 0 20px rgba(0, 255, 102, 0.4); transform: scale(1.02); }
+
+        footer { text-align: center; padding: 40px; color: #4b5563; font-family: 'Orbitron', sans-serif; font-size: 14px; letter-spacing: 2px; }
+
+    </style>
+</head>
+    <div id="panel-admin-mafia" style="display:none; position:fixed; bottom:20px; right:20px; background:#050508; border:2px solid #ff003c; padding:20px; border-radius:15px; z-index:999999; box-shadow: 0 0 30px rgba(255,0,60,0.4); width: 320px; font-family: 'Inter', sans-serif;">
+    <h5 style="color:#ff003c; margin-bottom:10px; text-transform:uppercase; font-size:16px; font-weight:900; letter-spacing: 1px;">⚙️ Modo Dios Activado</h5>
+    <p style="font-size:12px; color:#a1a1aa; margin-bottom:15px; line-height: 1.4;">Estás en modo edición en vivo. Haz clic sobre cualquier texto, título o descripción de la página para modificarlo directamente.</p>
+    
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+        <button onclick="guardarCambiosMafia()" style="background:#16a34a; color:#fff; border:none; padding:12px; font-weight:900; text-transform:uppercase; cursor:pointer; border-radius:8px; letter-spacing: 1px; transition: 0.3s;">💾 Guardar Cambios</button>
+        <button onclick="salirModoAdmin()" style="background:#dc2626; color:#fff; border:none; padding:12px; font-weight:900; text-transform:uppercase; cursor:pointer; border-radius:8px; letter-spacing: 1px; transition: 0.3s;">❌ Salir sin Guardar</button>
     </div>
 </div>
 
-<script>
-    // Lógica para abrir y cerrar el menú de reglas
-    const modal = document.getElementById("modalReglas");
-    const btnAbrir = document.getElementById("btnReglas");
-    const btnCerrar = document.getElementById("btnCerrar");
+<div onclick="solicitarAccesoAdmin()" style="position:fixed; bottom:0; left:0; width:50px; height:50px; background:transparent; cursor:pointer; z-index:999999;" title="Acceso al Sistema"></div>
 
-    btnAbrir.onclick = function() {
-        modal.style.display = "block";
-    }
+    <script>
+    (function() {
+        // Tu contraseña exacta
+        var contrasenaSecreta = "YORMAN.123.";
+        var claveStorage = "datos_torneo_mafia";
 
-    btnCerrar.onclick = function() {
-        modal.style.d
+        // 1. Al cargar la página, restaura los textos modificados previamente
+        document.addEventListener("DOMContentLoaded", function() {
+            var contenidoGuardado = localStorage.getItem(claveStorage);
+            if (contenidoGuardado) {
+                // Envuelve todo tu contenido principal en un div con id "contenido-editable" 
+                // o usará el body por defecto (excluyendo este script)
+                var contenedor = document.getElementById("contenido-editable") || document.body;
+                
+                // Evitamos sobrescribir el panel de admin en sí
+                if(contenedor.id === "contenido-editable") {
+                    contenedor.innerHTML = contenidoGuardado;
+                }
+            }
+        });
+
+        // 2. Despliega el prompt de seguridad al tocar la esquina invisible
+        window.solicitarAccesoAdmin = function() {
+            var input = prompt("🔒 ACCESO RESTRINGIDO\nIngrese la clave maestra del sistema:");
+            if (input === contrasenaSecreta) {
+                alert("✅ ACCESO CONCEDIDO. Se han resaltado los textos editables.");
+                activarEdicionGlobal();
+            } else if (input !== null) {
+                alert("❌ ACCESO DENEGADO. Credenciales incorrectas.");
+            }
+        };
+
+        // 3. Convierte los textos de la página en cajas de texto editables
+        function activarEdicionGlobal() {
+            document.getElementById("panel-admin-mafia").style.display = "block";
+            
+            // Selecciona todos los elementos que contengan texto en tu web
+            var selectores = "p, h1, h2, h3, h4, h5, h6, li, span, strong, a:not([href^='#'])";
+            var elementos = document.querySelectorAll(selectores);
+            
+            elementos.forEach(function(el) {
+                // Evitamos editar el propio panel de control
+                if (!document.getElementById("panel-admin-mafia").contains(el)) {
+                    el.setAttribute("contenteditable", "true");
+                    // Le pone un borde rojo punteado para que sepas qué puedes editar
+                    el.style.outline = "2px dashed rgba(255, 0, 60, 0.6)";
+                    el.style.padding = "2px";
+                    el.style.borderRadius = "4px";
+                }
+            });
+        }
+
+        // 4. Limpia el diseño y guarda todo el HTML en la memoria de tu navegador
+        window.guardarCambiosMafia = function() {
+            // Quita los bordes punteados y el modo edición antes de guardar
+            var elementos = document.querySelectorAll("[contenteditable]");
+            elementos.forEach(function(el) {
+                el.removeAttribute("contenteditable");
+                el.style.outline = "none";
+                el.style.padding = "";
+            });
+
+            // Guarda el contenido modificado
+            var contenedor = document.getElementById("contenido-editable") || document.body;
+            
+            // Si usamos el body, nos aseguramos de no guardar el HTML del panel desplegado
+            document.getElementById("panel-admin-mafia").style.display = "none"; 
+            
+            localStorage.setItem(claveStorage, contenedor.innerHTML);
+            
+            alert("💾 ¡Cambios guardados con éxito en la plataforma!");
+            location.reload();
+        };
+
+        // 5. Cancela todo y recarga la página
+        window.salirModoAdmin = function() {
+            if (confirm("¿Estás seguro de salir? Se perderá cualquier texto que hayas modificado y no hayas guardado.")) {
+                location.reload();
+            }
+        };
+    })();
+</script>
+
+<body>
+</html>
